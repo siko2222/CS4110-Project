@@ -42,7 +42,6 @@ create_clock -period 10.000 -name sys_clk_pin -waveform {0.000 5.000} -add [get_
 #set_property PACKAGE_PIN R2 [get_ports {sw[15]}]
 #set_property IOSTANDARD LVCMOS33 [get_ports {sw[15]}]
 
-
 ## LEDs
 set_property PACKAGE_PIN U16 [get_ports limit]
 set_property IOSTANDARD LVCMOS33 [get_ports limit]
@@ -74,9 +73,8 @@ set_property IOSTANDARD LVCMOS33 [get_ports limit]
 #set_property IOSTANDARD LVCMOS33 [get_ports {led[13]}]
 #set_property PACKAGE_PIN P1 [get_ports {led[14]}]
 #set_property IOSTANDARD LVCMOS33 [get_ports {led[14]}]
-#set_property PACKAGE_PIN L1 [get_ports {trigger_out}]
-#set_property IOSTANDARD LVCMOS33 [get_ports {trigger_out}]
-
+#set_property PACKAGE_PIN L1 [get_ports {led[15]}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {led[15]}]
 
 ##7 segment display
 #set_property PACKAGE_PIN W7 [get_ports {seg[0]}]
@@ -106,7 +104,6 @@ set_property IOSTANDARD LVCMOS33 [get_ports limit]
 #set_property PACKAGE_PIN W4 [get_ports {an[3]}]
 #set_property IOSTANDARD LVCMOS33 [get_ports {an[3]}]
 
-
 ##Buttons
 set_property PACKAGE_PIN U18 [get_ports rst]
 set_property IOSTANDARD LVCMOS33 [get_ports rst]
@@ -118,8 +115,6 @@ set_property IOSTANDARD LVCMOS33 [get_ports rst]
 #set_property IOSTANDARD LVCMOS33 [get_ports btnR]
 #set_property PACKAGE_PIN U17 [get_ports btnD]
 #set_property IOSTANDARD LVCMOS33 [get_ports btnD]
-
-
 
 ##Pmod Header JA
 ##Sch name = JA1
@@ -147,20 +142,6 @@ set_property IOSTANDARD LVCMOS33 [get_ports frontRight_in2]
 set_property PACKAGE_PIN G3 [get_ports rearRight_in2]
 set_property IOSTANDARD LVCMOS33 [get_ports rearRight_in2]
 
-
-## motor 2 front, motor 1 rear left
-## motor 1 front, motor 2 rear right
-
-## J1 -> frontLeft_in1 --> in3
-## H1 -> frontLeft_in2 --> in4
-## L2 -> rearLeft_in1 --> in1
-## K2 -> rearLeft_in2 --> in2
-
-## J2 -> frontRight_in1 --> in1
-## H2 -> frontRight_in2 --> in2
-## G2 -> rearRight_in1 --> in3
-## G3 -> rearRight_in2 --> in4
-
 ##Pmod Header JB
 ##Sch name = JB1
 #set_property PACKAGE_PIN A14 [get_ports {JB[0]}]
@@ -186,8 +167,6 @@ set_property IOSTANDARD LVCMOS33 [get_ports rearRight_in2]
 ##Sch name = JB10
 #set_property PACKAGE_PIN C16 [get_ports {JB[7]}]
 #set_property IOSTANDARD LVCMOS33 [get_ports {JB[7]}]
-
-
 
 ##Pmod Header JC
 ##Sch name = JC1
@@ -218,37 +197,29 @@ set_property IOSTANDARD LVCMOS33 [get_ports {rearLeft_en}]
 
 ##Pmod Header JXADC
 #Sch name = XA1_P
-#set_property PACKAGE_PIN J3 [get_ports trigger_out]
-#set_property IOSTANDARD LVCMOS33 [get_ports trigger_out]
+#set_property PACKAGE_PIN J3 [get_ports {JXADC[0]}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {JXADC[0]}]
 ##Sch name = XA2_P
-#set_property PACKAGE_PIN L3 [get_ports frontRight_en]
-#set_property IOSTANDARD LVCMOS33 [get_ports frontRight_en]
+#set_property PACKAGE_PIN L3 [get_ports {JXADC[1]}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {JXADC[1]}]
 ##Sch name = XA3_P
-#set_property PACKAGE_PIN M2 [get_ports frontLeft_en]
-#set_property IOSTANDARD LVCMOS33 [get_ports frontLeft_en]
+#set_property PACKAGE_PIN M2 [get_ports {JXADC[2]}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {JXADC[2]}]
 ##Sch name = XA4_P
 #set_property PACKAGE_PIN N2 [get_ports {JXADC[3]}]
 #set_property IOSTANDARD LVCMOS33 [get_ports {JXADC[3]}]
 #Sch name = XA1_N
-#set_property PACKAGE_PIN K3 [get_ports pwm_in]
-#set_property IOSTANDARD LVCMOS33 [get_ports pwm_in]
+#set_property PACKAGE_PIN K3 [get_ports {JXADC[4]}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {JXADC[4]}]
 ##Sch name = XA2_N
-#set_property PACKAGE_PIN M3 [get_ports rearRight_en]
-#set_property IOSTANDARD LVCMOS33 [get_ports rearRight_en]
+#set_property PACKAGE_PIN M3 [get_ports {JXADC[5]}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {JXADC[5]}]
 ##Sch name = XA3_N
-#set_property PACKAGE_PIN M1 [get_ports rearLeft_en]
-#set_property IOSTANDARD LVCMOS33 [get_ports rearleft_en]
+#set_property PACKAGE_PIN M1 [get_ports {JXADC[6]}]
+#set_property IOSTANDARD LVCMOS33 [get_ports {JXADC[6]}]
 ##Sch name = XA4_N
 ##set_property PACKAGE_PIN N1 [get_ports {JXADC[7]}]
 #set_property IOSTANDARD LVCMOS33 [get_ports {JXADC[7]}]
-
-## motor 2 front, motor 1 rear left
-## motor 1 front, motor 2 rear right
-
-## L3 -> motor 2 right rearRight
-## M3 -> motor 1 right frontRight
-## M2 -> motor 2 left frontLeft
-## M1 -> motor 1 left rearLeft
 
 ##VGA Connector
 #set_property PACKAGE_PIN G19 [get_ports {vgaRed[0]}]
@@ -280,13 +251,11 @@ set_property IOSTANDARD LVCMOS33 [get_ports {rearLeft_en}]
 #set_property PACKAGE_PIN R19 [get_ports Vsync]
 #set_property IOSTANDARD LVCMOS33 [get_ports Vsync]
 
-
 ##USB-RS232 Interface
 #set_property PACKAGE_PIN B18 [get_ports RsRx]
 #set_property IOSTANDARD LVCMOS33 [get_ports RsRx]
 #set_property PACKAGE_PIN A18 [get_ports RsTx]
 #set_property IOSTANDARD LVCMOS33 [get_ports RsTx]
-
 
 ##USB HID (PS/2)
 #set_property PACKAGE_PIN C17 [get_ports PS2Clk]
@@ -295,7 +264,6 @@ set_property IOSTANDARD LVCMOS33 [get_ports {rearLeft_en}]
 #set_property PACKAGE_PIN B17 [get_ports PS2Data]
 #set_property IOSTANDARD LVCMOS33 [get_ports PS2Data]
 #set_property PULLUP true [get_ports PS2Data]
-
 
 ##Quad SPI Flash
 ##Note that CCLK_0 cannot be placed in 7 series devices. You can access it using the
