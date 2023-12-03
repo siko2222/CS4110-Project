@@ -10,7 +10,6 @@ entity pwm_fsm is
    );
 end pwm_fsm;
 
-
 architecture arch of pwm_fsm is
    type state_type is (s0, s1, s2, s3); -- States: s0: idle, s1: trigger, s2: wait, s3: count
    signal st_reg, st_next: state_type;
@@ -38,7 +37,7 @@ begin
       end if;
    end process;
 
-   -- next-state/output logic
+   -- Next-state/output logic
    process(st_reg, pwm_in, trigger_timer_done)
    begin
       -- Default values for outputs
@@ -64,7 +63,7 @@ begin
                st_next <= s2;
             end if;
             
-         when s2 =>  -- Wait state -- trigger should be 0 when entering s2
+         when s2 =>  -- Wait state
             if pwm_in = '1' then
                st_next <= s3;
             end if;

@@ -46,9 +46,9 @@ begin
    -- Next-state/output logic
    process(state_reg, under_the_limit, width_count, turn_left_timer_done)
    begin
-      -- default values
-      state_next <= state_reg;  -- default back to same state
-      control_signal <= "000"; -- default, motors at rest
+      -- Default values for outputs
+      state_next <= state_reg;  -- Default back to same state
+      control_signal <= "000"; -- Default, motors at rest
       turn_left_timer_reset <= '0';
       turn_left_timer_enable <= '0';
       

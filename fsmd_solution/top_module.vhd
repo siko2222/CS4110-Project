@@ -25,10 +25,9 @@ end movement_control;
 architecture arch of movement_control is
   signal under_the_limit: std_logic;
   signal width_cnt: std_logic_vector(19 downto 0);
-  signal threshold_limit: std_logic_vector(19 downto 0) := "00001100001101010000"; --"00010101010110101000"; -- 87464 ca. 20 cm, currently using 50000 (ca 8,5 cm)
+  signal threshold_limit: std_logic_vector(19 downto 0) := "00001100001101010000"; -- Currently using 50000 (ca 8,5 cm)
   signal write: std_logic := '1';
   signal control_signal : std_logic_vector(2 downto 0);
-
 begin
    
 	-- Instantiate PWM reader

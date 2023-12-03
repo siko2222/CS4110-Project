@@ -15,7 +15,7 @@ architecture arch of up_counter is
    signal r_next: unsigned(N-1 downto 0);
    
 begin
-   -- register
+   -- Register
    process(clk,rst)
    begin
       if (rst='1') then
@@ -25,13 +25,13 @@ begin
       end if;
    end process;
    
-   -- next-state logic
+   -- Next-state logic
    r_next <= 
              r_reg + 1     when uc_cnt = '1' else
              (others => '0') when uc_clr = '1' else
              r_reg;
              
-   -- output logic
+   -- Output logic
    uc_q <= std_logic_vector(r_reg);
    
 end arch;
