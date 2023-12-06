@@ -6,6 +6,7 @@ entity reg is
    port(clk, rst, reg_ld: in std_logic;
         reg_d: in std_logic_vector(19 downto 0);
         reg_q: out std_logic_vector(19 downto 0));
+        
 end reg;
 
 architecture arch of reg is

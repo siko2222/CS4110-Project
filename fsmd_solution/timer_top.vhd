@@ -15,19 +15,20 @@ end timer;
 architecture arch of timer is
    signal top_clr, top_cnt: std_logic;
    signal top_ucq, top_hrq, top_trq: std_logic_vector(N-1 downto 0);
+
 begin
-    -- Instantiate up counter
+    -- Up counter
     counter: entity work.up_counter_30(arch)
     port map(clk=>clk, rst=>rst, uc_clr=>top_clr, 
              uc_cnt=>top_cnt, uc_q=>top_ucq);
    
-    -- Instantiate hold register
+    -- Hold register
     hold_reg_30: entity work.reg_30(arch)
     port map(clk=>clk, rst=>rst,
 		     reg_30_ld=>'1', reg_30_d=>top_ucq,
 		     reg_30_q=>top_hrq);
 	
-	-- Instantiate threshold register
+	-- Threshold register
     threshold_reg_30: entity work.reg_30(arch)
     port map(clk=>clk, rst=>rst,
 		     reg_30_ld=>'1', reg_30_d=>timer_max,             
@@ -36,9 +37,9 @@ begin
     -- Comparator circuit
     timer_done <= '1' when top_hrq >= top_trq else '0';
 	
-	-- Instantiate FSM control path
+	-- Ccontrol path (FSM)
     control_path: entity work.timer_fsm(arch)
-    port map(clk=>clk, rst=>rst, 
+    port map(clk=>clk,rst=>rst, 
 		     clear=>top_clr, count=>top_cnt, en=>en);
 	
 end arch;

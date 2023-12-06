@@ -17,9 +17,10 @@ architecture arch of pwm_fsm is
    signal trigger_timer_done: std_logic; 
    signal trigger_timer_reset: std_logic;
    signal trigger_timer_enable: std_logic;
+   
 begin
 
-   -- Instantiate trigger timer
+   -- Timer for 10us trigger pulse
    trigger_timer: entity work.timer(arch)
    port map(clk=>clk,
    rst=>trigger_timer_reset,

@@ -13,6 +13,7 @@ end timer_fsm;
 architecture arch of timer_fsm is
    type state_type is (s0, s1);
    signal st_reg, st_next: state_type;
+   
 begin
    
    -- State register
