@@ -73,7 +73,6 @@ begin
             control_signal <= "011";
             turn_left_timer_enable <= '1'; 
             if turn_left_timer_done = '1' then
-                turn_left_timer_enable <= '0';
                 turn_left_timer_reset <= '1';
                 state_next <= S1; -- Transition to S1 after duration  
             end if;
