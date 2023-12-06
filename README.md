@@ -14,3 +14,13 @@ The functionality shall be implemented in four different ways:
 * An ASIP solution using Vivado (based on a given minimal RISC-V type architecture), running in the Basys-3 or Zybo boards
 * A codesign solution created using HLS, running in the Zybo board
 * A SW-only solution, running in the Zybo board
+
+## Repo structure
+
+The repo is structured such that each implementation has its own folder:
+* [fsmd_solution](fsmd_solution)
+* software_solution
+* hls_solution
+* asip_solution
+
+The final report is in the root of the repo
