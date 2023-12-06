@@ -1,4 +1,3 @@
---------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
  
@@ -25,12 +24,12 @@ ARCHITECTURE behavior OF tb_movement_control IS
    rearRight_en : out std_logic);
    END COMPONENT;
     
-   --Inputs
+   -- Inputs
    signal clk : std_logic;
    signal rst : std_logic:= '0';
    signal pwm_in : std_logic;
    
- 	--Outputs
+ 	-- Outputs
  	signal trigger_out: std_logic;
  	signal frontLeft_in1 :std_logic;
    signal frontLeft_in2 :std_logic;
@@ -101,11 +100,6 @@ BEGIN
 	   wait for 10us; -- Wait for trigger pulse of 10us
 	   pwm_in <= '1';
 	   wait for 700us; -- Echo signal of 400us
-	   pwm_in <= '0';
-	
-	   wait for 10us; -- Wait for trigger pulse of 10us
-	   pwm_in <= '1';
-	   wait for 400us; -- Echo signal of 400us
 	   pwm_in <= '0';
 	
 	   wait for 3ms; -- Wait
