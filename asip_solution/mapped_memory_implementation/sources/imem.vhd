@@ -38,7 +38,7 @@ architecture arch of imem is
         -- Forward/bakward logic
         "000000010000000010000010",  -- addr 05: LD R1, R0(1) 			    Move distance measurement into R2
         "000001000000110000001101",  -- addr 06: JRNZ R3, 4			(dec)	Jump to backward if state is not zero
-        "000000110100010000100000",  -- addr 07: BGTQ R2, R1, 3 	(dec)	Drive backwards if threshold is greater or equals to current distance (R1 <= R2)
+        "000000110100010000100000",  -- addr 07: BGEU R2, R1, 3 	(dec)	Drive backwards if threshold is greater or equals to current distance (R1 <= R2)
         
         -- Forward	
         "011001000000001000000000",  -- addr 08: MVi  R4, 100       (dec)   Move signed value into R3 (aka. motors to move forward full speed)
@@ -47,8 +47,7 @@ architecture arch of imem is
         -- Backward
         "000000010000000110000000",  -- addr 10: MVi  R3, 1			(dec)	Backing up status
         "100101100000000100000000",  -- addr 11: MVi  R2, 150   	(dec)	Update the distance threshold, such that the car backs up 5cm
-        -- Double check logic here
-        "000001110010100000100000",  -- addr 12: BGTQ R1, R2, 7 	(dec)	Turn to the left if distance is greater or equals the new threshold (R2 <= R1)
+        "000001110010100000100000",  -- addr 12: BGEU R1, R2, 7 	(dec)	Turn to the left if distance is greater or equals the new threshold (R2 <= R1)
         "110011100000001000000000",  -- addr 13: MVi  R4, -50   	(dec)   Move -50 to R3 (aka. motors to move backwards at half speed)
         
         -- Drive all wheels
@@ -70,7 +69,7 @@ architecture arch of imem is
         "000000111000000000000011",  -- addr 25: ST R4, R0(3)	
         "111111100000001010000000",  -- addr 26: MVi  R5, 254		(dec)   Move left turn counter threshold into R5
         "000000100000001100000010",  -- addr 27: LD R6, R0(2)	    (dec)	Load counter value into R6
-        "111111111011100000100000",  -- addr 28: BGTQ R5, R6, -1	(dec)   Wait until counter is greater than or equal to threshold in R5
+        "111111111011100000100000",  -- addr 28: BGEU R5, R6, -1	(dec)   Wait until counter is greater than or equal to threshold in R5
         "111001100000000000001110",  -- addr 29: J -26				(dec)	Jump to Setup
     
         "111111111111111111111111", -- addr 30: (void)

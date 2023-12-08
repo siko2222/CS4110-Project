@@ -32,7 +32,7 @@ architecture arch of imem is
         -- Forward/bakward logic
         "000000000000000100001111",  -- addr 04: MVD  R2 					Move distance measurement into R2
         "000001000000000000001101",  -- addr 05: JRNZ R0, 4			(dec)	Jump to backward if state is not zero
-        "000000110010100000100000",  -- addr 06: BGTQ R1, R2, 3 	(dec)	Drive backwards if threshold is greater or equals to current distance (R1 <= R2)
+        "000000110010100000100000",  -- addr 06: BGEU R1, R2, 3 	(dec)	Drive backwards if threshold is greater or equals to current distance (R1 <= R2)
         
         -- Forward	
         "011001000000000110000000",  -- addr 07: MVi  R3, 100       (dec)   Move signed value into R3 (aka. motors to move forward full speed)
@@ -41,7 +41,7 @@ architecture arch of imem is
         -- Backward
         "000000010000000000000000",  -- addr 09: MVi  R0, 1			(dec)	Backing up status
         "100101100000000010000000",  -- addr 10: MVi  R1, 150   	(dec)	Update the distance, such that the car backs up 5cm
-        "000001110100010000100000",  -- addr 11: BGTQ R2, R1, 7 	(dec)	Turn to the left if distance is greater or equals the new threshold (R2 <= R1)
+        "000001110100010000100000",  -- addr 11: BGEU R2, R1, 7 	(dec)	Turn to the left if distance is greater or equals the new threshold (R2 <= R1)
         "110011100000000110000000",  -- addr 12: MVi  R3, -50   	(dec)   Move -50 to R3 (aka. motors to move backwards at half speed)
         
         -- Drive all wheels
@@ -63,7 +63,7 @@ architecture arch of imem is
         "000000000000000000100011",  -- addr 24: CRST	
         "111111100000001010000000",  -- addr 25: MVi  R5, 254		(dec)   Move left turn counter threshold into R5
         "000000000000001100100010",  -- addr 26: MVC  R6			(dec)	Move counter value to R6
-        "111111111011100000100000",  -- addr 27: BGTQ R5, R6, -1	(dec)   Wait until counter is greater than or equal to threshold in R5
+        "111111111011100000100000",  -- addr 27: BGEU R5, R6, -1	(dec)   Wait until counter is greater than or equal to threshold in R5
         "111001100000000000001110",  -- addr 28: J -26				(dec)	Jump to Setup
     
         "111111111111111111111111", -- addr 29: (void)
