@@ -28,9 +28,10 @@ architecture arch of movement_control is
   signal threshold_limit: std_logic_vector(19 downto 0) := "00001100001101010000"; -- Currently using 50000 (ca 8,5 cm)
   signal write: std_logic := '1';
   signal control_signal : std_logic_vector(2 downto 0);
+
 begin
    
-	-- Instantiate PWM reader
+	-- PWI (PWM Interface) for reading the pwm echo signal from distance sensor
     pwm_reader: entity work.pwm_reader(arch)
     port map(clk=>clk,
     rst=>rst,
@@ -42,7 +43,7 @@ begin
     trigger_out=>trigger_out
     );
 	
-	-- Instantiate motor controller
+	-- Motor controller module
 	motor_controller: entity work.motor_controller(arch)
     port map(
     control_signal=>control_signal,
@@ -60,9 +61,13 @@ begin
     rearRight_en=>rearRight_en
     );
 	
-	-- Instantiate FSM control path
+	-- Control path (FSM)
     control_path: entity work.fsm(arch)
-    port map(clk=>clk, reset=>rst, under_the_limit=>under_the_limit, control_signal=>control_signal, width_count=>width_cnt);
+    port map(clk=>clk,
+    reset=>rst,
+    under_the_limit=>under_the_limit,
+    control_signal=>control_signal,
+    width_count=>width_cnt);
     
     -- Set the limit output to be the value of the signal under_the_limit
     limit <= under_the_limit;

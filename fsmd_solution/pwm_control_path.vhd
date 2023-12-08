@@ -17,17 +17,18 @@ architecture arch of pwm_fsm is
    signal trigger_timer_done: std_logic; 
    signal trigger_timer_reset: std_logic;
    signal trigger_timer_enable: std_logic;
+   
 begin
 
--- instantiate timer
-    timer: entity work.timer(arch)
-    port map(clk=>clk,
-    rst=>trigger_timer_reset,
-    en=>trigger_timer_enable,
-    timer_max=>trigger_timer_max,
-    timer_done=>trigger_timer_done);
+   -- Timer for 10us trigger pulse
+   trigger_timer: entity work.timer(arch)
+   port map(clk=>clk,
+   rst=>trigger_timer_reset,
+   en=>trigger_timer_enable,
+   timer_max=>trigger_timer_max,
+   timer_done=>trigger_timer_done);
 
-   -- state register
+   -- State register
    process(clk, rst)
    begin
       if rst = '1' then
@@ -57,9 +58,7 @@ begin
             trigger_out <= '1';
             trigger_timer_enable <= '1';
             if trigger_timer_done = '1' then
-               trigger_timer_enable <= '0';
                trigger_timer_reset <= '1';
-               trigger_out <= '0';
                st_next <= s2;
             end if;
             
