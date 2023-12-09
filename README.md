@@ -19,8 +19,8 @@ The functionality shall be implemented in four different ways:
 
 The repo is structured such that each implementation has its own folder:
 * [fsmd_solution](fsmd_solution)
-* software_solution
-* hls_solution
-* asip_solution
+* [sw_solution](sw-solution)
+* [hls](hls)
+* [asip_solution](asip_solution)
 
 The final report is in the root of the repo
